@@ -14,7 +14,8 @@
   "dependencies": {
     "gatsby": "^2.0.76",
     "react": "^16.5.1",
-    "react-dom": "^16.5.1"
+    "react-dom": "^16.5.1",
+    "reactstrap": "^7.0.2"
   },
   "repository": {
     "type": "git",
