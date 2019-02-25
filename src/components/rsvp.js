@@ -9,9 +9,8 @@ export default class RSVPForm extends Component {
         super();
         this.state = {
             contactName: "",
+            note: "",
             partySize: 1,
-            namesOfGuestAndParty: {},
-            selectedActivities: {},
             activities: [
                 {
                     title: "Lunch, Paint & Sip",
@@ -84,16 +83,26 @@ export default class RSVPForm extends Component {
 
     renderButtons(opts) {
       return opts.map((opt, i) => {
-        const { ref, title, color } = opt;
+        const { ref, title, color, onClick, rsvp, disabled } = opt;
         return (
           <div style={{
             gridColumn: "6",
             padding: 5
           }} key={i}>
-            <Button block color={color} >{title}</Button>
+            <Button block
+                color={color}
+                onClick={onClick.bind(this, ref, rsvp)}
+                disabled={disabled}
+                >
+                    {title}
+            </Button>
           </div>
         );
       });
+    }
+
+    handleRSVP(ref, rsvp) {
+        console.log('this.state', this.state);
     }
 
     partySizeOptions(size) {
@@ -121,6 +130,8 @@ export default class RSVPForm extends Component {
                             name={`${i}_contactGuest`}
                             id={`${i}_contactGuest`}
                             placeholder="Enter Your Guest's First and Last Name"
+                            onChange={this.handleOnChange.bind(this)}
+                            value={this.state[`${i}_contactGuest`] || ''}
                         />
                     </FormGroup>
                 )
@@ -154,15 +165,30 @@ export default class RSVPForm extends Component {
 
     }
 
+    handleOnChange(e) {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+
     render() {
-        const { activities } = this.state;
+        const { activities, contactName } = this.state;
 
         return (
             <div style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", margin: 50, padding: 100 }}>
-                <Form >
+                <Form onSubmit={(e) => {
+                    e.preventDefault()
+                }}>
                  <FormGroup>
                    <Label for="contactName">Name</Label>
-                   <Input type="name" name="name" id="contactName" placeholder="Enter Your First and Last Name" />
+                   <Input
+                        type="name"
+                        name="name"
+                        id="contactName"
+                        placeholder="Enter Your First and Last Name"
+                        onChange={this.handleOnChange.bind(this)}
+                        value={this.state['contactName']}
+                    />
                  </FormGroup>
                  < hr/>
                  <FormGroup>
@@ -179,7 +205,7 @@ export default class RSVPForm extends Component {
                  < hr/>
                  <FormGroup>
                    <Label for="note">Leave a Special Note for Ryan & Kelsey</Label>
-                   <Input type="textarea" name="note" id="note" />
+                   <Input type="textarea" name="note" id="note" value={this.state['note']} onChange={this.handleOnChange.bind(this)} />
                  </FormGroup>
                  < hr/>
                  <FormGroup tag="fieldset">
@@ -189,8 +215,22 @@ export default class RSVPForm extends Component {
                  < hr/>
                  {
                      this.renderButtons([
-                         { title: "Excitedly Accept!", ref: "/rsvp/accept", color: "success" },
-                         { title: "Regretfully Decline!", ref: "/rsvp/decline", color: "secondary" }
+                         {
+                             title: "Excitedly Accept!",
+                             ref: "/rsvp/accept",
+                             onClick: this.handleRSVP,
+                             rsvp: true,
+                             disabled: contactName.length < 5,
+                             color: "success"
+                         },
+                         {
+                             title: "Regretfully Decline!",
+                             ref: "/rsvp/decline",
+                             onClick: this.handleRSVP,
+                             rsvp: false,
+                             disabled: contactName.length < 5,
+                             color: "secondary"
+                         }
                      ])
                  }
                </Form>
