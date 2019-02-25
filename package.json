@@ -9,7 +9,8 @@
     "start": "npm run develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
+    "format:check": "npx prettier -l './src/**/*.js'",
+    "format:update": "npx prettier --write './src/**/*.js'"
   },
   "dependencies": {
     "gatsby": "^2.0.76",
@@ -23,5 +24,8 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "devDependencies": {
+    "prettier": "^1.16.3"
   }
 }
