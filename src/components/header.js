@@ -6,10 +6,10 @@ export default ({ title, subtitle, img }) => (
         style={{
             display: "grid",
             backgroundImage: `url(${img})`,
-            height: "auto",
-            backgroundSize: "cover",
+            height: "100%",
+            backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "center center",
+            backgroundPosition: "top center",
             margin: "0px",
             padding: "15px"
         }}
