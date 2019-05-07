@@ -1,0 +1,7 @@
+version: '3.0'
+services:
+  rk_web_app:
+    ports:
+      - 9000:80
+    build: 
+      context: .
