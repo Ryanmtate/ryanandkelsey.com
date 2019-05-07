@@ -9,8 +9,8 @@
     "start": "npm run develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "format:check": "npx prettier -l './src/**/*.js'",
-    "format:update": "npx prettier --write './src/**/*.js'"
+    "format:check": "npx prettier -l './src/**/**.js'",
+    "format:update": "npx prettier --write './src/**/**.js'"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -19,7 +19,14 @@
     "react-dom": "^16.5.1",
     "reactstrap": "^7.0.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
   "devDependencies": {
-    "prettier": "^1.16.3"
+    "prettier": "^1.17.0"
   }
 }

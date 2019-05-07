@@ -1,7 +1,7 @@
 import React from "react";
 // import { Link } from "gatsby";
-import Layout from "../components/Layout.js";
-import RSVPForm from "../components/rsvp";
+import Layout from "../components/Layout";
+import Hotels from "../components/hotels";
 
 import "../styles/bootstrap.min.css";
 
@@ -22,7 +22,7 @@ export default () => (
             title={"Ryan & Kelsey Tate"}
             subtitle={"Wedding\nAugust 10th 2019"}
             img={headerImg}
-            Component={RSVPForm}
+            Component={Hotels}
         />
     </div>
 );

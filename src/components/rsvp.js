@@ -219,7 +219,7 @@ export default class RSVPForm extends Component {
                 style={{
                     backgroundColor: "rgba(0, 0, 0, 0.5)",
                     height: 1200,
-                    margin: 50,
+                    margin: 150,
                     padding: 100,
                     zoom: "75%"
                 }}
