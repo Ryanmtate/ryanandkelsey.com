@@ -13,22 +13,22 @@ const INITIAL_STATE = {
             location: "Uncorked Canvas - Tacoma, WA",
             capacity: 30,
             date: new Date("8/12/2019"),
-            hour: 16
+            hour: 15
         },
-        {
-            name: "Aerial Yoga",
-            title: "aerial_yoga",
-            checked: false,
-            location: "Cilly Fitness at Good Karma - Tacoma, WA",
-            capacity: 10,
-            date: new Date("8/12/2019"),
-            hour: 10
-        },
+        // {
+        //     name: "Aerial Yoga",
+        //     title: "aerial_yoga",
+        //     checked: false,
+        //     location: "Cilly Fitness at Good Karma - Tacoma, WA",
+        //     capacity: 10,
+        //     date: new Date("8/12/2019"),
+        //     hour: 11
+        // },
         {
             name: "Seattle Adventure",
             title: "seattle_adventure",
             checked: false,
-            location: "Meet at R&Ks - Tacoma, WA",
+            location: "Meet at R&K's House - Tacoma, WA",
             capacity: 10,
             date: new Date("8/8/2019"),
             hour: 8
