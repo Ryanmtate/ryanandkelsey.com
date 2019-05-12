@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import HotelDetails from "./HotelDetails";
 
 const fontStyle = {
@@ -10,9 +9,6 @@ const fontStyle = {
 };
 
 export class Hotels extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         const {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button } from "reactstrap";
 
 const fontStyle = {
     color: "rgb(180, 202, 205)"
@@ -37,9 +37,6 @@ export default class HotelDetails extends React.Component {
             name,
             phoneNumber,
             address,
-            discountCode,
-            password,
-            discountRate
         } = this.props;
         return (
             <div

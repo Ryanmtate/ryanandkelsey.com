@@ -7,10 +7,6 @@ import Hotels from "./HotelsComponent";
 import { RSVP_REDUCER_GENERIC } from "../state/rsvpReducer";
 
 export class RSVPForm extends Component {
-    constructor() {
-        super();
-    }
-
     renderButtons(opts) {
         return opts.map((opt, i) => {
             const { ref, title, color, onClick, rsvp, disabled } = opt;
