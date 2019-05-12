@@ -1,98 +1,14 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import axios from "axios";
+import Hotels from "./HotelsComponent";
 
-export default class RSVPForm extends Component {
+import { RSVP_REDUCER_GENERIC } from "../state/rsvpReducer";
+
+export class RSVPForm extends Component {
     constructor() {
         super();
-        this.state = {
-            rsvpd: false,
-            going: false,
-            email: "",
-            contact_name: "",
-            note: "",
-            number_guests: 1,
-            activities: [
-                {
-                    name: "Lunch, Paint & Sip",
-                    title: "paint_sip",
-                    checked: false,
-                    location: "Uncorked Canvas - Tacoma, WA",
-                    capacity: 30,
-                    date: new Date("8/12/2019"),
-                    hour: 16
-                },
-                {
-                    name: "Aerial Yoga",
-                    title: "aerial_yoga",
-                    checked: false,
-                    location: "Cilly Fitness at Good Karma - Tacoma, WA",
-                    capacity: 10,
-                    date: new Date("8/12/2019"),
-                    hour: 10
-                },
-                {
-                    name: "Seattle Adventure",
-                    title: "seattle_adventure",
-                    checked: false,
-                    location: "Meet at R&Ks - Tacoma, WA",
-                    capacity: 10,
-                    date: new Date("8/8/2019"),
-                    hour: 8
-                },
-                // {
-                //     title: "NW Adventure Trek",
-                //     checked: false,
-                //     location: "Meet at R&K's House - Tacoma, WA",
-                //     capacity: 100,
-                //     date: new Date("8/13/2019"),
-                //     hour: 8
-                // },
-                // {
-                //     title: "Day Trip to Seattle",
-                //     checked: false,
-                //     location: "Meet at R&K's House - Tacoma, WA",
-                //     capacity: 100,
-                //     date: new Date("8/13/2019"),
-                //     hour: 8
-                // },
-                {
-                    name: "Emerald Downs Horse Races",
-                    title: "horse_races",
-                    checked: false,
-                    location: "Emerald Downs - Auburn, WA",
-                    capacity: 100,
-                    date: new Date("8/11/2019"),
-                    hour: 10
-                },
-                {
-                    name: "Tacoma Adventure",
-                    title: "tacoma_adventure",
-                    checked: false,
-                    location: "Meet at R&K's House - Tacoma, WA",
-                    capacity: 100,
-                    date: new Date("8/9/2019"),
-                    hour: 10
-                },
-                {
-                    name: "Sounders FC 2 vs. Orange County FC",
-                    title: "soccer_game",
-                    checked: false,
-                    location: "Cheney Stadium - Tacoma, WA",
-                    capacity: 100,
-                    date: new Date("8/9/2019"),
-                    hour: 18
-                }
-                // {
-                //     title: "Rainer's Minor League Baseball Game",
-                //     checked: false,
-                //     location: "Cheney Stadium - Tacoma, WA",
-                //     capacity: 100,
-                //     date: new Date("8/15/2019"),
-                //     hour: 18
-                // }
-            ]
-        };
     }
 
     renderButtons(opts) {
@@ -121,11 +37,22 @@ export default class RSVPForm extends Component {
 
     async handleRSVP(ref, rsvp) {
         try {
-            console.log("ref, rsvp", ref, rsvp);
-            console.log("this.state", this.state);
-            await axios.post("http://localhost:3000/wedding/rsvp", this.state);
+            const { dispatch } = this.props;
+            await axios.post(
+                "http://localhost:3000/wedding/rsvp",
+                this.props.rsvp
+            );
+            dispatch({
+                type: RSVP_REDUCER_GENERIC,
+                key: "going",
+                value: rsvp
+            });
 
-            this.setState({ rsvpd: true, going: rsvp });
+            dispatch({
+                type: RSVP_REDUCER_GENERIC,
+                key: "rsvpd",
+                value: true
+            });
         } catch (error) {
             console.log("error", error);
         }
@@ -140,7 +67,8 @@ export default class RSVPForm extends Component {
     }
 
     guestPartyInfo() {
-        const { number_guests } = this.state;
+        const { rsvp } = this.props;
+        const { number_guests } = rsvp;
 
         if (number_guests === 1) {
             return null;
@@ -158,7 +86,7 @@ export default class RSVPForm extends Component {
                             id={`guest_name_${i}`}
                             placeholder="Enter Your Guest's First and Last Name"
                             onChange={this.handleOnChange.bind(this)}
-                            value={this.state[`guest_name_${i}`] || ""}
+                            value={rsvp[`guest_name_${i}`] || ""}
                         />
                     </FormGroup>
                 );
@@ -168,6 +96,7 @@ export default class RSVPForm extends Component {
     }
 
     activityOptions(activities) {
+        const { dispatch } = this.props;
         return activities
             .sort((a, b) => {
                 return a.date - b.date;
@@ -186,7 +115,11 @@ export default class RSVPForm extends Component {
                                         ...activities[i],
                                         checked: e.target.checked
                                     };
-                                    this.setState({ activities: activities });
+                                    dispatch({
+                                        type: RSVP_REDUCER_GENERIC,
+                                        key: "activities",
+                                        value: activities
+                                    });
                                 }}
                             />{" "}
                             <span style={{ color: "#f0ad4e" }}>{name}</span> |{" "}
@@ -206,13 +139,19 @@ export default class RSVPForm extends Component {
     }
 
     handleOnChange(e) {
-        this.setState({
-            [e.target.id]: e.target.value
+        const { dispatch } = this.props;
+        dispatch({
+            type: RSVP_REDUCER_GENERIC,
+            key: e.target.id,
+            value: e.target.value
         });
     }
 
     renderRsvpForm() {
-        const { activities, contact_name } = this.state;
+        const {
+            dispatch,
+            rsvp: { activities, contact_name, email, note }
+        } = this.props;
 
         return (
             <div
@@ -237,7 +176,7 @@ export default class RSVPForm extends Component {
                             id="contact_name"
                             placeholder="Enter Your First and Last Name"
                             onChange={this.handleOnChange.bind(this)}
-                            value={this.state["contact_name"]}
+                            value={contact_name}
                         />
                     </FormGroup>
                     <FormGroup>
@@ -248,7 +187,7 @@ export default class RSVPForm extends Component {
                             id="email"
                             placeholder="Enter your email address"
                             onChange={this.handleOnChange.bind(this)}
-                            value={this.state["email"]}
+                            value={email}
                         />
                     </FormGroup>
                     <hr />
@@ -262,8 +201,10 @@ export default class RSVPForm extends Component {
                             id="NumberGuests"
                             onChange={e => {
                                 // Set our party size to the changed value
-                                this.setState({
-                                    number_guests: +e.target.value
+                                dispatch({
+                                    type: RSVP_REDUCER_GENERIC,
+                                    key: "number_guests",
+                                    value: +e.target.value
                                 });
                             }}
                         >
@@ -280,7 +221,7 @@ export default class RSVPForm extends Component {
                             type="textarea"
                             name="note"
                             id="note"
-                            value={this.state["note"]}
+                            value={note}
                             onChange={this.handleOnChange.bind(this)}
                         />
                     </FormGroup>
@@ -314,22 +255,13 @@ export default class RSVPForm extends Component {
     }
 
     render() {
-        const { rsvpd, going } = this.state;
+        const {
+            rsvp: { rsvpd, going }
+        } = this.props;
 
         return rsvpd ? (
             going ? (
-                <div style={{ margin: 200, height: 400, zoom: "75%" }}>
-                    <div
-                        style={{
-                            backgroundColor: "rgba(0, 0, 0, 0.5)",
-                            padding: 100,
-                            height: 50,
-                            textAlign: "center"
-                        }}
-                    >
-                        <h1 style={{ color: "white" }}>See you soon!</h1>
-                    </div>
-                </div>
+                <Hotels />
             ) : (
                 <div style={{ margin: 200, height: 400, zoom: "75%" }}>
                     <div
@@ -349,3 +281,13 @@ export default class RSVPForm extends Component {
         );
     }
 }
+
+const mapStateToProps = (state, props) => {
+    return {
+        rsvp: state.rsvp
+    };
+};
+
+const RSVPFormComponent = connect(mapStateToProps)(RSVPForm);
+
+export default RSVPFormComponent;
