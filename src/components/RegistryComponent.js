@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import HotelDetails from "./HotelDetails";
+import RegistryDetails from "./RegistryDetails";
 
 const fontStyle = {
     color: "rgb(180, 202, 205)",
@@ -8,11 +8,11 @@ const fontStyle = {
     fontSize: "36px"
 };
 
-export class Hotels extends React.Component {
+export class Registry extends React.Component {
 
     render() {
         const {
-            hotels: { list }
+            registry: { list }
         } = this.props;
         return (
             <div
@@ -24,11 +24,10 @@ export class Hotels extends React.Component {
                     zoom: "75%"
                 }}
             >
-                <h1 style={fontStyle}>We're Excited to See You Soon!!</h1>
-                <br />
-                <h1 style={fontStyle}>Need a Hotel?</h1>
-                {list.map((hotel, i) => {
-                    return <HotelDetails {...hotel} key={i} />;
+                <h1 style={fontStyle}>Registry Options!</h1>
+                
+                {list.map((registry, i) => {
+                    return <RegistryDetails {...registry} key={i} />;
                 })}
             </div>
         );
@@ -37,10 +36,10 @@ export class Hotels extends React.Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        hotels: state.hotels
+        registry: state.registry
     };
 };
 
-const HotelsComponent = connect(mapStateToProps)(Hotels);
+const RegistryComponent = connect(mapStateToProps)(Registry);
 
-export default HotelsComponent;
+export default RegistryComponent;
