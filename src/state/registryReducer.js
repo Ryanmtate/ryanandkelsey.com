@@ -1,12 +1,12 @@
 const INITIAL_STATE = {
     list: [
         {
-            name: "Donate to MTTA",
+            name: "Donate - Mt. Tahoma Trails Assoc.",
             website: "https://www.skimtta.org",
             target: true
         },
         {
-            name: "Amazon",
+            name: "Amazon Wedding Registry",
             website: "https://www.amazon.com/wedding/share/RyanandKelseyTate",
             target: true
         },

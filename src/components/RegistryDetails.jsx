@@ -10,8 +10,8 @@ export default class RegistryDetails extends React.Component {
         super(props);
     }
 
-    bookNow() {
-        const { target, website } = this.props;
+    registryLink() {
+        const { target, website, name } = this.props;
         return (
             <Button
                 block
@@ -20,7 +20,14 @@ export default class RegistryDetails extends React.Component {
                 target={target ? "_blank" : null}
                 href={website}
             >
-                Go to Site!
+                <h3
+                    style={{
+                        color: "#fff",
+                        padding: "10px"
+                    }}
+                >
+                    {name}
+                </h3>
             </Button>
         );
     }
@@ -33,10 +40,7 @@ export default class RegistryDetails extends React.Component {
                     marginTop: "50px"
                 }}
             >
-                <br />
-                <h1 style={fontStyle}>{name}</h1>
-                {this.bookNow()}
-                <hr />
+                {this.registryLink()}
             </div>
         );
     }

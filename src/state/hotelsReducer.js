@@ -4,7 +4,7 @@ const INITIAL_STATE = {
             name: "SilverCloud Inn",
             phoneNumber: "253-272-1300",
             address: "2317 Ruston Way, Tacoma, WA 98402",
-            website: "www.silvercloud.com/Tacoma",
+            website: "http://silvercloud.com/Tacoma",
             discountCode: "TATE",
             password: "TATE",
             discountRate: "$10 Off",
@@ -16,14 +16,9 @@ const INITIAL_STATE = {
             address: "1320 Broadway Plaza, Tacoma, WA 98402",
             website: "http://bit.ly/2D2y75T",
             discountCode: "WEDDING",
-            password: "WEDDING",
+            password: null,
             discountRate: "10% Off",
             target: true
-        },
-        {
-            name: "Registry?",
-            website: "/registry",
-            target: false
         }
     ]
 };

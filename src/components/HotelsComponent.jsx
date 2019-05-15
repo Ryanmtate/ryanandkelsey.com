@@ -1,11 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import HotelDetails from "./HotelDetails";
+import { Button } from "reactstrap";
 
 const fontStyle = {
     color: "rgb(180, 202, 205)",
     textAlign: "center",
-    fontSize: "36px"
+    padding: "10px",
+    fontSize: "48px"
 };
 
 export class Hotels extends React.Component {
@@ -23,12 +25,34 @@ export class Hotels extends React.Component {
                     zoom: "75%"
                 }}
             >
-                <h1 style={fontStyle}>We're Excited to See You Soon!!</h1>
-                <br />
-                <h1 style={fontStyle}>Need a Hotel?</h1>
+                <h1 style={fontStyle}>We're Excited </h1>
+                <h1 style={fontStyle}>to See You Soon!</h1>
+                <h3
+                    style={{
+                        ...fontStyle,
+                        fontSize: "36px",
+                        paddingTop: "20px"
+                    }}
+                >
+                    Need a Hotel?
+                </h3>
                 {list.map((hotel, i) => {
                     return <HotelDetails {...hotel} key={i} />;
                 })}
+                <br />
+                <hr />
+                <br />
+                <Button block color={"warning"} size={"sm"} href={"/registry"}>
+                    <h3
+                        style={{
+                            color: "rgb(167, 91, 8)",
+                            padding: "10px",
+                            fontSize: "36px"
+                        }}
+                    >
+                        See Registry Options
+                    </h3>
+                </Button>
             </div>
         );
     }

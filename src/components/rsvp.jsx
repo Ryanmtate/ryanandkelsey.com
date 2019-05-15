@@ -3,14 +3,27 @@ import { connect } from "react-redux";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import axios from "axios";
 import Hotels from "./HotelsComponent";
-import Registry from "./RegistryComponent";
+import RegistryDetails from "./RegistryDetails";
 
 import { RSVP_REDUCER_GENERIC } from "../state/rsvpReducer";
+
+const fontStyle = {
+    color: "rgb(180, 202, 205)",
+    textAlign: "center"
+};
 
 export class RSVPForm extends Component {
     renderButtons(opts) {
         return opts.map((opt, i) => {
-            const { ref, title, color, onClick, rsvp, disabled } = opt;
+            const {
+                ref,
+                title,
+                color,
+                onClick,
+                rsvp,
+                disabled,
+                fontColor
+            } = opt;
             return (
                 <div
                     style={{
@@ -25,7 +38,13 @@ export class RSVPForm extends Component {
                         onClick={onClick.bind(this, ref, rsvp)}
                         disabled={disabled}
                     >
-                        {title}
+                        <h1
+                            style={{
+                                color: fontColor
+                            }}
+                        >
+                            {title}
+                        </h1>
                     </Button>
                 </div>
             );
@@ -104,6 +123,10 @@ export class RSVPForm extends Component {
                     <FormGroup check key={i}>
                         <Label check>
                             <Input
+                                style={{
+                                    transform: "scale(2)",
+                                    marginTop: "15px"
+                                }}
                                 type="checkbox"
                                 name={`activity_${i}`}
                                 checked={checked}
@@ -119,16 +142,35 @@ export class RSVPForm extends Component {
                                     });
                                 }}
                             />{" "}
-                            <span style={{ color: "#f0ad4e" }}>{name}</span> |{" "}
-                            <span style={{ color: "#4BBF73" }}>
-                                {location}
-                            </span>{" "}
-                            | {date ? date.toLocaleDateString() : null}{" "}
-                            {date
-                                ? new Date(
-                                      date.setHours(hour)
-                                  ).toLocaleTimeString()
-                                : null}
+                            <div
+                                style={{
+                                    marginLeft: "15px"
+                                }}
+                            >
+                                <h5 style={{ color: "#f0ad4e" }}>
+                                    {name}{" "}
+                                    <small
+                                        style={{
+                                            color: "#fff",
+                                            fontSize: "16px"
+                                        }}
+                                    >
+                                        |{" "}
+                                        {date
+                                            ? date.toLocaleDateString()
+                                            : null}{" "}
+                                        {date
+                                            ? new Date(
+                                                  date.setHours(hour)
+                                              ).toLocaleTimeString()
+                                            : null}
+                                    </small>
+                                </h5>
+                                <h5 style={{ color: "#4BBF73" }}>
+                                    {location}
+                                </h5>
+                            </div>
+                            <hr />
                         </Label>
                     </FormGroup>
                 );
@@ -154,9 +196,10 @@ export class RSVPForm extends Component {
             <div
                 style={{
                     backgroundColor: "rgba(0, 0, 0, 0.5)",
-                    height: 1200,
+                    height: 1700,
                     margin: 150,
                     padding: 100,
+                    fontSize: "22px",
                     zoom: "75%"
                 }}
             >
@@ -165,6 +208,14 @@ export class RSVPForm extends Component {
                         e.preventDefault();
                     }}
                 >
+                    <h3
+                        style={{
+                            color: "#fff"
+                        }}
+                    >
+                        RSVP Details
+                    </h3>
+                    <hr />
                     <FormGroup>
                         <Label for="contact_name">Name</Label>
                         <Input
@@ -218,13 +269,21 @@ export class RSVPForm extends Component {
                             type="textarea"
                             name="note"
                             id="note"
+                            placeholder={`We're Looking forward to seeing everyone! \nLove, R&K`}
                             value={note}
                             onChange={this.handleOnChange.bind(this)}
                         />
                     </FormGroup>
                     <hr />
                     <FormGroup tag="fieldset">
-                        <legend>Activities To Do While in Town!</legend>
+                        <h3
+                            style={{
+                                color: "#fff"
+                            }}
+                        >
+                            Select Activities To Do While in Town
+                        </h3>
+                        <hr />
                         {this.activityOptions(activities)}
                     </FormGroup>
                     <hr />
@@ -235,7 +294,8 @@ export class RSVPForm extends Component {
                             onClick: this.handleRSVP,
                             rsvp: true,
                             disabled: contact_name.length < 5,
-                            color: "success"
+                            color: "success",
+                            fontColor: "white"
                         },
                         {
                             title: "Regretfully Decline!",
@@ -243,10 +303,30 @@ export class RSVPForm extends Component {
                             onClick: this.handleRSVP,
                             rsvp: false,
                             disabled: contact_name.length < 5,
-                            color: "secondary"
+                            color: "secondary",
+                            fontColor: "black"
                         }
                     ])}
                 </Form>
+            </div>
+        );
+    }
+
+    registryOptions() {
+        const {
+            registry: { list }
+        } = this.props;
+
+        return (
+            <div>
+                <hr />
+                <br />
+                <h2 style={fontStyle}>No gifts expected</h2>
+                <h2 style={fontStyle}>but if you feel inclined</h2>
+                <h2 style={fontStyle}>view our registry</h2>
+                {list.map((registry, i) => {
+                    return <RegistryDetails {...registry} key={i} />;
+                })}
             </div>
         );
     }
@@ -260,17 +340,23 @@ export class RSVPForm extends Component {
             going ? (
                 <Hotels />
             ) : (
-                <div style={{ margin: 200, height: 400, zoom: "75%" }}>
+                <div style={{ margin: 200, height: 1500, zoom: "75%" }}>
                     <div
                         style={{
                             backgroundColor: "rgba(0, 0, 0, 0.5)",
                             padding: 100,
-                            height: 50,
                             textAlign: "center"
                         }}
                     >
-                        <h1 style={{ color: "white" }}>Sorry to miss you!</h1>
-                        <Registry />
+                        <h1
+                            style={{
+                                color: "white",
+                                fontSize: "36px"
+                            }}
+                        >
+                            We're Sorry to Miss You!
+                        </h1>
+                        {this.registryOptions()}
                     </div>
                 </div>
             )
@@ -282,7 +368,8 @@ export class RSVPForm extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        rsvp: state.rsvp
+        rsvp: state.rsvp,
+        registry: state.registry
     };
 };
 

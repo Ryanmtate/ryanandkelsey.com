@@ -28,26 +28,48 @@ export default class HotelDetails extends React.Component {
                 target={target ? "_blank" : null}
                 href={website}
             >
-                Book Now!
+                <h3
+                    style={{
+                        color: "#fff",
+                        padding: "10px"
+                    }}
+                >
+                    Book Now!
+                </h3>
             </Button>
         );
     }
 
     render() {
-        const { name, phoneNumber, address } = this.props;
+        const {
+            name,
+            phoneNumber,
+            address,
+            discountCode,
+            password
+        } = this.props;
         return (
             <div
                 style={{
-                    marginTop: "50px"
+                    marginTop: "50px",
+                    textAlign: "center"
                 }}
             >
-                <br />
                 <h1 style={fontStyle}>
                     {name} | {phoneNumber}
                 </h1>
                 <h2 style={fontStyle}>{address}</h2>
+                <h4
+                    style={{
+                        color: fontStyle.color,
+                        padding: "2px"
+                    }}
+                >
+                    Discount Code: {discountCode}{" "}
+                    {password ? `| Password: ${password}` : null}
+                </h4>
+                <br />
                 {this.bookNow()}
-                <hr />
             </div>
         );
     }
