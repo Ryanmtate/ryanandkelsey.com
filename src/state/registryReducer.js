@@ -3,20 +3,18 @@ const INITIAL_STATE = {
         {
             name: "Donate to MTTA",
             website: "https://www.skimtta.org",
+            target: true
         },
         {
             name: "Amazon",
             website: "https://www.amazon.com/wedding/share/RyanandKelseyTate",
-            
+            target: true
         },
         {
             name: "Home Depot Gift Cards",
             website: "https://www.homedepot.com/c/Gift_Cards",
-        },
-        {
-            name: "Target Gift Cards",
-            website: "https://www.target.com/c/gift-cards/-/N-5xsxu",
-        },
+            target: true
+        }
     ]
 };
 

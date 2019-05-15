@@ -6,24 +6,24 @@ const INITIAL_STATE = {
     note: "",
     number_guests: 1,
     activities: [
-        {
-            name: "Lunch, Paint & Sip",
-            title: "paint_sip",
-            checked: false,
-            location: "Uncorked Canvas - Tacoma, WA",
-            capacity: 30,
-            date: new Date("8/12/2019"),
-            hour: 15
-        },
         // {
-        //     name: "Aerial Yoga",
-        //     title: "aerial_yoga",
+        //     name: "Lunch, Paint & Sip",
+        //     title: "paint_sip",
         //     checked: false,
-        //     location: "Cilly Fitness at Good Karma - Tacoma, WA",
-        //     capacity: 10,
+        //     location: "Uncorked Canvas - Tacoma, WA",
+        //     capacity: 30,
         //     date: new Date("8/12/2019"),
-        //     hour: 11
+        //     hour: 15
         // },
+        {
+            name: "Aerial Yoga",
+            title: "aerial_yoga",
+            checked: false,
+            location: "Cilly Fitness at Good Karma - Tacoma, WA",
+            capacity: 10,
+            date: new Date("8/12/2019"),
+            hour: 11
+        },
         {
             name: "Seattle Adventure",
             title: "seattle_adventure",
@@ -56,7 +56,7 @@ const INITIAL_STATE = {
             location: "Emerald Downs - Auburn, WA",
             capacity: 100,
             date: new Date("8/11/2019"),
-            hour: 10
+            hour: 14
         },
         {
             name: "Tacoma Adventure",
@@ -65,14 +65,14 @@ const INITIAL_STATE = {
             location: "Meet at R&K's House - Tacoma, WA",
             capacity: 100,
             date: new Date("8/9/2019"),
-            hour: 10
+            hour: 8
         },
         {
             name: "Sounders FC 2 vs. Orange County FC",
             title: "soccer_game",
             checked: false,
             location: "Cheney Stadium - Tacoma, WA",
-            capacity: 100,
+            capacity: 24,
             date: new Date("8/9/2019"),
             hour: 18
         }

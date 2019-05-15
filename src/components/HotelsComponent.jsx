@@ -9,7 +9,6 @@ const fontStyle = {
 };
 
 export class Hotels extends React.Component {
-
     render() {
         const {
             hotels: { list }

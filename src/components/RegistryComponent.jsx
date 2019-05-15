@@ -9,7 +9,6 @@ const fontStyle = {
 };
 
 export class Registry extends React.Component {
-
     render() {
         const {
             registry: { list }
@@ -25,7 +24,7 @@ export class Registry extends React.Component {
                 }}
             >
                 <h1 style={fontStyle}>Registry Options!</h1>
-                
+
                 {list.map((registry, i) => {
                     return <RegistryDetails {...registry} key={i} />;
                 })}

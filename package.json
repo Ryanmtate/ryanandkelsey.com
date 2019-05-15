@@ -10,7 +10,8 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "format:check": "npx prettier -l './src/**/**.js'",
-    "format:update": "npx prettier --write './src/**/**.js'"
+    "format:update": "npx prettier --write './src/**/**.js'",
+    "eslint": "npx eslint --ext .js,.jsx ./src"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -29,6 +30,11 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
     "prettier": "^1.17.0"
   }
 }

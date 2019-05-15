@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import axios from "axios";
 import Hotels from "./HotelsComponent";
+import Registry from "./RegistryComponent";
 
 import { RSVP_REDUCER_GENERIC } from "../state/rsvpReducer";
 
@@ -269,6 +270,7 @@ export class RSVPForm extends Component {
                         }}
                     >
                         <h1 style={{ color: "white" }}>Sorry to miss you!</h1>
+                        <Registry />
                     </div>
                 </div>
             )

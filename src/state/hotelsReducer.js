@@ -7,7 +7,8 @@ const INITIAL_STATE = {
             website: "www.silvercloud.com/Tacoma",
             discountCode: "TATE",
             password: "TATE",
-            discountRate: "$10 Off"
+            discountRate: "$10 Off",
+            target: true
         },
         {
             name: "Hotel Murano",
@@ -16,7 +17,13 @@ const INITIAL_STATE = {
             website: "http://bit.ly/2D2y75T",
             discountCode: "WEDDING",
             password: "WEDDING",
-            discountRate: "10% Off"
+            discountRate: "10% Off",
+            target: true
+        },
+        {
+            name: "Registry?",
+            website: "/registry",
+            target: false
         }
     ]
 };
