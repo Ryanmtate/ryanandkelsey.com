@@ -9,8 +9,8 @@
     "start": "npm run develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "format:check": "npx prettier -l './src/**/**.js'",
-    "format:update": "npx prettier --write './src/**/**.js'",
+    "format:check": "npx prettier -l './src/**/**{.js,.jsx}'",
+    "format:update": "npx prettier --write './src/**/**{.js,.jsx}'",
     "eslint": "npx eslint --ext .js,.jsx ./src"
   },
   "dependencies": {
