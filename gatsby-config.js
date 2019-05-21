@@ -1,5 +1,5 @@
 module.exports = {
     siteMetadata: {
-      title: `Kelsey and Ryan are Getting Married (again!!)`,
+      title: `Kelsey & Ryan Say I Do, Part II.`,
     },
   }

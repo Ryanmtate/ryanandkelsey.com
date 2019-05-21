@@ -7,15 +7,16 @@ import "../styles/bootstrap.min.css";
 
 const headerImg = "../images/header.jpeg";
 
-export default () => (
+const MobileView = () => (
     <div
         style={{
             backgroundColor: "#1e2d44",
             backgroundImage: `url(${headerImg})`,
             backgroundSize: "auto",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "50% 200px",
-            backgroundOrigin: "content-box"
+            backgroundPosition: "50% 400px",
+            backgroundOrigin: "content-box",
+            backgroundPositionX: -700
         }}
     >
         <Layout
@@ -25,4 +26,30 @@ export default () => (
             Component={RSVPForm}
         />
     </div>
-);
+)
+
+const DesktopView = () => (
+    <div
+        style={{
+            backgroundColor: "#1e2d44",
+            backgroundImage: `url(${headerImg})`,
+            backgroundSize: "auto",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "50% 200px",
+            backgroundOrigin: "content-box",
+            // backgroundPositionX: -700
+        }}
+    >
+        <Layout
+            title={"Ryan & Kelsey Tate"}
+            subtitle={"Wedding\nAugust 10th 2019"}
+            img={headerImg}
+            Component={RSVPForm}
+        />
+    </div>
+)
+
+export default () => {
+    return screen.width < 400 ?
+        (<MobileView />) : (<DesktopView />)
+};

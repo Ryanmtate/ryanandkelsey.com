@@ -48,8 +48,8 @@ export class Registry extends React.Component {
             <div
                 style={{
                     backgroundColor: "rgba(0, 0, 0, 0.5)",
-                    height: 1200,
-                    margin: 150,
+                    height: screen.width < 400 ? 1500 : 1000,
+                    margin: screen.width < 400 ? 0 : 150,
                     padding: 100,
                     zoom: "75%"
                 }}

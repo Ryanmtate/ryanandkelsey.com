@@ -196,9 +196,9 @@ export class RSVPForm extends Component {
             <div
                 style={{
                     backgroundColor: "rgba(0, 0, 0, 0.5)",
-                    height: 1700,
-                    margin: 150,
-                    padding: 100,
+                    height: screen.width < 400 ? 2000 : 1500,
+                    margin: screen.width < 400 ? 0 : 150,
+                    padding: 50,
                     fontSize: "22px",
                     zoom: "75%"
                 }}
@@ -331,7 +331,7 @@ export class RSVPForm extends Component {
         );
     }
 
-    render() {
+    selectView() {
         const {
             rsvp: { rsvpd, going }
         } = this.props;
@@ -340,7 +340,11 @@ export class RSVPForm extends Component {
             going ? (
                 <Hotels />
             ) : (
-                <div style={{ margin: 200, height: 1500, zoom: "75%" }}>
+                <div style={{ 
+                    margin: screen.width < 400 ? 0 : 150,
+                    height: screen.width < 400 ? 2000 : 1500,
+                    zoom: "75%" 
+                    }}>
                     <div
                         style={{
                             backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -363,6 +367,16 @@ export class RSVPForm extends Component {
         ) : (
             this.renderRsvpForm()
         );
+    }
+
+    render() {
+        return (
+            <div style={{
+                zIndex: "3"
+            }}>
+                {this.selectView()}
+            </div>
+        )
     }
 }
 
